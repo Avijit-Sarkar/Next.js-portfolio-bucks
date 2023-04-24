@@ -1,12 +1,11 @@
-import Navbar from './NavBar';
-import Footer from './Footer';
-
-export default function Layout({ children }) {
+export default function Layout({ children, className = '' }) {
   return (
     <>
-      <Navbar />
-      <main>{children}</main>
-      <Footer />
+      <div
+        className={`w-full h-full inline-block z-0 bg-light p-32 ${className}`}
+      >
+        {children}
+      </div>
     </>
   );
 }

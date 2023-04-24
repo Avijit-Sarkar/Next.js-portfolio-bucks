@@ -1,3 +1,5 @@
+import Footer from '@/components/Footer';
+import NavBar from '@/components/NavBar';
 import Layout from '@/components/layout';
 import '@/styles/globals.css';
 
@@ -16,13 +18,13 @@ export default function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout>
-        <main
-          className={`${montserrat.variable} font-mont bg-light w-full min-h-screen`}
-        >
-          <Component {...pageProps} />
-        </main>
-      </Layout>
+      <NavBar />
+      <main
+        className={`${montserrat.variable} font-mont bg-light w-full min-h-screen`}
+      >
+        <Component {...pageProps} />
+      </main>
+      <Footer />
     </>
   );
 }
