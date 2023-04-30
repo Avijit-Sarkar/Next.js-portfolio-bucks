@@ -13,6 +13,7 @@ import {
   MoonIcon,
 } from "./Icons";
 import { useTheme } from "next-themes";
+import useThemeSwitcher from "./hooks/useThemeSwitcher";
 
 const CustomLink = ({ href, title, className = "" }) => {
   const router = useRouter();
@@ -32,17 +33,17 @@ const CustomLink = ({ href, title, className = "" }) => {
 };
 
 const NavBar = () => {
-  // const [mode, setMode] = useThemeSwitcher();
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const [mode, setMode] = useThemeSwitcher();
+  // const { theme, setTheme } = useTheme();
+  // const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // useEffect(() => {
+  //   setMounted(true);
+  // }, []);
 
-  if (!mounted) return null;
+  // if (!mounted) return null;
 
-  const currentTheme = theme === "system" ? systemTheme : theme;
+  // const currentTheme = theme === "system" ? systemTheme : theme;
 
   return (
     <header className="w-full px-32 py-8 font-medium flex items-center justify-between dark:text-light">
@@ -99,7 +100,7 @@ const NavBar = () => {
           <DribbbleIcon />
         </motion.a>
 
-        {/* <button
+        <button
           onClick={() => setMode(mode === "light" ? "dark" : "light")}
           className={`ml-3 flex items-center justify-center rounded-full p-1
           ${mode === "light" ? "bg-dark text-light" : "bg-light text-dark"}
@@ -110,9 +111,9 @@ const NavBar = () => {
           ) : (
             <MoonIcon className={"fill-dark"} />
           )}
-        </button> */}
+        </button>
 
-        {currentTheme === "dark" ? (
+        {/* {currentTheme === "dark" ? (
           <button
             onClick={() => setTheme("light")}
             className={`ml-3 flex items-center justify-center rounded-full p-1
@@ -138,7 +139,7 @@ const NavBar = () => {
           >
             <MoonIcon className={"fill-dark"} />
           </button>
-        )}
+        )} */}
       </nav>
 
       <div className="absolute left-[50%] top-2 translate-x-[-50%]">
