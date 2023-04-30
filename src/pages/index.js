@@ -1,12 +1,12 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import profilePic from '../../public/images/profile/developer-pic-1.png';
-import Layout from '@/components/layout';
-import AnimatedText from '@/components/AnimatedText';
-import Link from 'next/link';
-import { LinkArrow } from '@/components/Icons';
-import HireMe from '@/components/HireMe';
-import lightBulb from '../../public/images/svgs/miscellaneous_icons_1.svg';
+import Head from "next/head";
+import Image from "next/image";
+import profilePic from "../../public/images/profile/developer-pic-1.png";
+import Layout from "@/components/layout";
+import AnimatedText from "@/components/AnimatedText";
+import Link from "next/link";
+import { LinkArrow } from "@/components/Icons";
+import HireMe from "@/components/HireMe";
+import lightBulb from "../../public/images/svgs/miscellaneous_icons_1.svg";
 
 export default function Home() {
   return (
@@ -19,7 +19,15 @@ export default function Home() {
         <Layout className="pt-0">
           <div className="flex items-center justify-between w-full">
             <div className="w-1/2">
-              <Image src={profilePic} alt="..." className="w-full h-auto" />
+              <Image
+                src={profilePic}
+                alt="Bucks"
+                className="w-full h-auto"
+                priority
+                sizes="(max-width: 768px) 100vw,
+                (max-width: 1200px) 50vw,
+                50vw"
+              />
             </div>
             <div className="w-1/2 flex flex-col items-center self-center">
               <AnimatedText
@@ -35,16 +43,16 @@ export default function Home() {
               <div className="flex items-center self-start mt-2">
                 <Link
                   href="/dummy.pdf"
-                  target={'_blank'}
+                  target={"_blank"}
                   className="flex items-center bg-dark text-light dark:bg-light dark:text-dark p-2.5 px-6 rounded-lg text-lg font-semibold hover:bg-light hover:dark:bg-dark hover:text-dark hover:dark:text-light border border-solid border-transparent hover:border-dark hover:dark:border-light"
                   download={true}
                 >
                   Resume
-                  <LinkArrow className={'w-6 ml-1'} />
+                  <LinkArrow className={"w-6 ml-1"} />
                 </Link>
                 <Link
                   href="mailto:example@example.com"
-                  target={'_blank'}
+                  target={"_blank"}
                   className="ml-4 text-lg font-medium capitalize text-dark dark:text-light underline"
                 >
                   Contact
