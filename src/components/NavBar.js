@@ -12,7 +12,6 @@ import {
   SunIcon,
   MoonIcon,
 } from "./Icons";
-import useThemeSwitcher from "./hooks/useThemeSwitcher";
 import { useTheme } from "next-themes";
 
 const CustomLink = ({ href, title, className = "" }) => {
