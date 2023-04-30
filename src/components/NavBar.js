@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import React from 'react';
-import Logo from './Logo';
-import { useRouter } from 'next/router';
-import { motion } from 'framer-motion';
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import Logo from "./Logo";
+import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 import {
   TwitterIcon,
   DribbbleIcon,
@@ -11,10 +11,11 @@ import {
   PinterestIcon,
   SunIcon,
   MoonIcon,
-} from './Icons';
-import useThemeSwitcher from './hooks/useThemeSwitcher';
+} from "./Icons";
+import useThemeSwitcher from "./hooks/useThemeSwitcher";
+import { useTheme } from "next-themes";
 
-const CustomLink = ({ href, title, className = '' }) => {
+const CustomLink = ({ href, title, className = "" }) => {
   const router = useRouter();
   return (
     <Link href={href} className={`${className} relative group`}>
@@ -22,7 +23,7 @@ const CustomLink = ({ href, title, className = '' }) => {
 
       <span
         className={`h-[1px] inline-block bg-dark absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease-in-out duration-300 ${
-          router.asPath === href ? 'w-full' : 'w-0'
+          router.asPath === href ? "w-full" : "w-0"
         } dark:bg-light`}
       >
         &nbsp;
@@ -32,7 +33,17 @@ const CustomLink = ({ href, title, className = '' }) => {
 };
 
 const NavBar = () => {
-  const [mode, setMode] = useThemeSwitcher();
+  // const [mode, setMode] = useThemeSwitcher();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  const currentTheme = theme === "system" ? systemTheme : theme;
 
   return (
     <header className="w-full px-32 py-8 font-medium flex items-center justify-between dark:text-light">
@@ -45,7 +56,7 @@ const NavBar = () => {
       <nav className="flex items-center justify-center flex-wrap">
         <motion.a
           href="https://twitter.com"
-          target={'_blank'}
+          target={"_blank"}
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}
           className="w-6 mr-3"
@@ -54,7 +65,7 @@ const NavBar = () => {
         </motion.a>
         <motion.a
           href="https://twitter.com"
-          target={'_blank'}
+          target={"_blank"}
           className="w-6 mx-3"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}
@@ -63,7 +74,7 @@ const NavBar = () => {
         </motion.a>
         <motion.a
           href="https://twitter.com"
-          target={'_blank'}
+          target={"_blank"}
           className="w-6 mx-3"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}
@@ -72,7 +83,7 @@ const NavBar = () => {
         </motion.a>
         <motion.a
           href="https://twitter.com"
-          target={'_blank'}
+          target={"_blank"}
           className="w-6 mx-3"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}
@@ -81,7 +92,7 @@ const NavBar = () => {
         </motion.a>
         <motion.a
           href="https://twitter.com"
-          target={'_blank'}
+          target={"_blank"}
           className="w-6 ml-3"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}
@@ -89,18 +100,46 @@ const NavBar = () => {
           <DribbbleIcon />
         </motion.a>
 
-        <button
-          onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
+        {/* <button
+          onClick={() => setMode(mode === "light" ? "dark" : "light")}
           className={`ml-3 flex items-center justify-center rounded-full p-1
-          ${mode === 'light' ? 'bg-dark text-light' : 'bg-light text-dark'}
+          ${mode === "light" ? "bg-dark text-light" : "bg-light text-dark"}
           `}
         >
-          {mode === 'dark' ? (
-            <SunIcon className={'fill-dark'} />
+          {mode === "dark" ? (
+            <SunIcon className={"fill-dark"} />
           ) : (
-            <MoonIcon className={'fill-dark'} />
+            <MoonIcon className={"fill-dark"} />
           )}
-        </button>
+        </button> */}
+
+        {currentTheme === "dark" ? (
+          <button
+            onClick={() => setTheme("light")}
+            className={`ml-3 flex items-center justify-center rounded-full p-1
+            ${
+              currentTheme === "light"
+                ? "bg-dark text-light"
+                : "bg-light text-dark"
+            }
+         `}
+          >
+            <SunIcon className={"fill-dark"} />
+          </button>
+        ) : (
+          <button
+            onClick={() => setTheme("dark")}
+            className={`ml-3 flex items-center justify-center rounded-full p-1
+            ${
+              currentTheme === "light"
+                ? "bg-dark text-light"
+                : "bg-light text-dark"
+            }
+         `}
+          >
+            <MoonIcon className={"fill-dark"} />
+          </button>
+        )}
       </nav>
 
       <div className="absolute left-[50%] top-2 translate-x-[-50%]">

@@ -1,13 +1,13 @@
-import AnimatedText from '@/components/AnimatedText';
-import Layout from '@/components/layout';
-import Head from 'next/head';
-import Image from 'next/image';
-import React, { useEffect, useRef } from 'react';
-import profilePic from '../../public/images/profile/developer-pic-2.jpg';
-import { useInView, useMotionValue, useSpring } from 'framer-motion';
-import Skills from '@/components/Skills';
-import Experience from '@/components/Experience';
-import Education from '@/components/Education';
+import AnimatedText from "@/components/AnimatedText";
+import Layout from "@/components/layout";
+import Head from "next/head";
+import Image from "next/image";
+import React, { useEffect, useRef } from "react";
+import profilePic from "../../public/images/profile/developer-pic-2.jpg";
+import { useInView, useMotionValue, useSpring } from "framer-motion";
+import Skills from "@/components/Skills";
+import Experience from "@/components/Experience";
+import Education from "@/components/Education";
 
 const AnimatedNumbers = ({ value }) => {
   const ref = useRef(null);
@@ -22,7 +22,7 @@ const AnimatedNumbers = ({ value }) => {
   }, [isInView, value, motionValue]);
 
   useEffect(() => {
-    springValue.on('change', (latest) => {
+    springValue.on("change", (latest) => {
       if (ref.current && latest.toFixed(0) <= value) {
         ref.current.textContent = latest.toFixed(0);
       }
@@ -39,9 +39,9 @@ const about = () => {
         <title>Bucks | About Page</title>
         <meta name="description" content="any description" />
       </Head>
-      <main className="flex w-full flex-col items-center justify-center">
+      <main className="flex w-full flex-col items-center justify-center dark:text-light">
         <Layout className="pt-16">
-          <AnimatedText text={'Passion Fuels Purpose!'} className="mb-16" />
+          <AnimatedText text={"Passion Fuels Purpose!"} className="mb-16" />
           <div className="grid w-full grid-cols-8 gap-16">
             <div className="col-span-3 flex flex-col items-start justify-start">
               <h2 className="mb-4 text-lg font-bold uppercase text-dark/75">
@@ -83,7 +83,7 @@ const about = () => {
                 <span className="inline-block text-7xl font-bold">
                   <AnimatedNumbers value={50} />+
                 </span>
-                <h2 className="text-xl font-medium capitalize text-dark/75">
+                <h2 className="text-xl font-medium capitalize text-dark/75 dark:text-light/75">
                   satisfied clients
                 </h2>
               </div>
@@ -91,7 +91,7 @@ const about = () => {
                 <span className="inline-block text-7xl font-bold">
                   <AnimatedNumbers value={40} />+
                 </span>
-                <h2 className="text-xl font-medium capitalize text-dark/75">
+                <h2 className="text-xl font-medium capitalize text-dark/75 dark:text-light/75">
                   projects completed
                 </h2>
               </div>
@@ -99,7 +99,7 @@ const about = () => {
                 <span className="inline-block text-7xl font-bold">
                   <AnimatedNumbers value={4} />+
                 </span>
-                <h2 className="text-xl font-medium capitalize text-dark/75">
+                <h2 className="text-xl font-medium capitalize text-dark/75 dark:text-light/75">
                   years of experience
                 </h2>
               </div>
